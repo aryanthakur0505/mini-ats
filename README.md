@@ -2,7 +2,7 @@
 
 A lightweight Applicant Tracking System for managing candidates through a hiring pipeline, with search, filtering, and a live metrics dashboard.
 
-**Live demo:** _add your Vercel URL here_ · **Demo video:** _add your Loom link here_
+**Live demo:** https://mini-ats-eight-wheat.vercel.app · **Demo video:** _add your Loom link here_
 
 ![Dashboard](docs/screenshots/dashboard.jpg)
 
