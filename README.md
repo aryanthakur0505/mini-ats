@@ -98,7 +98,7 @@ Requires Node 20+ and a PostgreSQL database (a free [Neon](https://neon.tech) pr
 
 ```bash
 npm install
-cp .env.example .env        # fill in DATABASE_URL and DIRECT_URL
+cp .env.example .env        # fill in DATABASE_URL and DATABASE_URL_UNPOOLED
 npx prisma migrate deploy   # create tables
 npm run db:seed             # optional: load 40 sample candidates
 npm run dev                 # http://localhost:3000
@@ -107,14 +107,14 @@ npm run dev                 # http://localhost:3000
 | Variable | Description |
 | --- | --- |
 | `DATABASE_URL` | Pooled connection string, used by the app at runtime |
-| `DIRECT_URL` | Direct (non-pooled) connection string, used by Prisma migrations |
+| `DATABASE_URL_UNPOOLED` | Direct (non-pooled) connection string, used by Prisma migrations |
 
 ## Deploying to Vercel
 
 1. Import the GitHub repo in Vercel.
-2. Add `DATABASE_URL` and `DIRECT_URL` as environment variables.
-3. Deploy. The build runs `prisma generate && next build`.
-4. Run the migration and seed against the production database once from your machine (with `.env` pointing at Neon): `npx prisma migrate deploy && npm run db:seed`.
+2. Add a Neon database from the Vercel Marketplace (Storage → Neon). It injects `DATABASE_URL` and `DATABASE_URL_UNPOOLED` automatically.
+3. Deploy. The build runs `prisma generate && next build`. Functions run in `sin1` (Singapore), next to the database (see `vercel.json`).
+4. Run the migration and seed once from your machine, with `.env` pointing at Neon: `npx prisma migrate deploy && npm run db:seed`.
 
 ## Trade-offs and next steps
 
